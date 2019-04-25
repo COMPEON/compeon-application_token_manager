@@ -37,7 +37,7 @@ module Compeon
         with_decryption: true
       ).parameters
 
-      @expires_at = parameters.find { |parameter| parameter.name == "#{parameter_path}/expires_at" }.value
+      @expires_at = parameters.find { |parameter| parameter.name == "#{parameter_path}/expires_at" }.value.to_i
       parameters.find { |parameter| parameter.name == "#{parameter_path}/string" }.value
     end
   end
