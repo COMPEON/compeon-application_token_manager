@@ -8,11 +8,11 @@ module Compeon
   class ApplicationTokenManager
     EXPIRY_THRESHOLD_IN_SECONDS = 30
 
-    def initialize(parameter_store_prefix:, client_id:)
+    def initialize(environment: ENV['ENVIRONMENT'], client_id: ENV['COMPEON_CLIENT_ID'])
       @client = Aws::SSM::Client.new
       @client_id = client_id
       @expires_at = 0
-      @parameter_store_prefix = parameter_store_prefix
+      @environment = environment
     end
 
     def token
@@ -22,14 +22,14 @@ module Compeon
 
     private
 
-    attr_reader :client, :client_id, :expires_at, :parameter_store_prefix
+    attr_reader :client, :client_id, :expires_at, :environment
 
     def expired?
       Time.now.to_i > (expires_at - EXPIRY_THRESHOLD_IN_SECONDS)
     end
 
     def fetch_token
-      parameter_path = "/#{parameter_store_prefix}/#{client_id}/private/token"
+      parameter_path = "/#{environment}/#{client_id}/private/token"
 
       parameters = client.get_parameters_by_path(
         path: parameter_path,
