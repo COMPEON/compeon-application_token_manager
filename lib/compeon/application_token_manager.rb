@@ -30,15 +30,16 @@ module Compeon
 
     def fetch_token
       parameter_path = "/#{environment}/#{client_id}/private/token"
+      expires_at = "#{parameter_path}/expires_at"
+      string = "#{parameter_path}/string"
 
-      parameters = client.get_parameters_by_path(
-        path: parameter_path,
-        recursive: true,
+      parameters = client.get_parameters(
+        names: [expires_at, string],
         with_decryption: true
       ).parameters
 
-      @expires_at = parameters.find { |parameter| parameter.name == "#{parameter_path}/expires_at" }.value.to_i
-      parameters.find { |parameter| parameter.name == "#{parameter_path}/string" }.value
+      @expires_at = parameters.find { |parameter| parameter.name == expires_at }.value.to_i
+      parameters.find { |parameter| parameter.name == string }.value
     end
   end
 end
