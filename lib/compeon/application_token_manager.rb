@@ -8,11 +8,11 @@ module Compeon
   class ApplicationTokenManager
     EXPIRY_THRESHOLD_IN_SECONDS = 30
 
-    def initialize(environment: ENV['ENVIRONMENT'], client_id: ENV['COMPEON_CLIENT_ID'])
+    def initialize(environment: nil, client_id: nil)
       @client = Aws::SSM::Client.new
-      @client_id = client_id
+      @client_id = client_id || ENV.fetch('COMPEON_CLIENT_ID')
       @expires_at = 0
-      @environment = environment
+      @environment = environment || ENV.fetch('ENVIRONMENT')
     end
 
     def token
