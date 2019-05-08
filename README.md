@@ -32,7 +32,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/timoschilling/compeon-application_token_manager.
+Bug reports and pull requests are welcome on GitHub at https://github.com/COMPEON/compeon-application_token_manager
 
 ## License
 
