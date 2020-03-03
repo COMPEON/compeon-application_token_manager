@@ -21,7 +21,7 @@ GEM
       aws-eventstream (~> 1.0, >= 1.0.2)
     jmespath (1.4.0)
     minitest (5.11.3)
-    rake (10.5.0)
+    rake (13.0.1)
 
 PLATFORMS
   ruby
@@ -30,7 +30,7 @@ DEPENDENCIES
   bundler (~> 2.0)
   compeon-application_token_manager!
   minitest (~> 5.0)
-  rake (~> 10.0)
+  rake (~> 13.0)
 
 BUNDLED WITH
    2.0.1
